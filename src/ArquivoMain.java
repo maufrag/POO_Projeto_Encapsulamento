@@ -54,7 +54,7 @@ public class ArquivoMain {
 		System.out.println("Integrates do grupo: \nMateus Torres Ferreira");
 		System.out.println("Date e hora da finalização das partidas " + date);
 		printarAsterisco();
-		System.out.println("Github: //adicionar");
+		System.out.println("Github: https://github.com/maufrag/POO_Projeto_Encapsulamento");
 		printarAsterisco();
 	}
 
