@@ -4,40 +4,46 @@ import Classes.Time.Time;
 import java.util.Scanner;
 
 public class ArquivoMain {
-	public static void main(final String[] args) {
-		Scanner scan = new Scanner(System.in);
-		System.out.println("Informe o n\u00famero de partidas: ");
+	public static void main(String[] args) {
+
+		System.out.println("Informe o número de partidas: ");
+
 		int qtdPartidasInformada = -1;
 		qtdPartidasInformada = obterQtdPartidasInformada(qtdPartidasInformada);
+
 		if (qtdPartidasInformada > 0) {
+
 			int numeroPartidaAtual = 1;
+
+			Scanner scan = new Scanner(System.in);
 			do {
 				Time timeLocal = new Time();
 				Time timeVisitante = new Time();
-				
-				System.out.println("Iniciando as partidas da Rodada do Brasileir\u00e3o.");
-				System.out.println(
-						"Vai começar a partida número " + numeroPartidaAtual + " de " + qtdPartidasInformada);
-				
+
+				System.out.println("Iniciando as partidas da Rodada do Brasileirão.");
+				System.out
+						.println("Vai começar a partida número " + numeroPartidaAtual + " de " + qtdPartidasInformada);
+
 				System.out.println("Informe o nome do time local: ");
 				timeLocal.setNome(scan.nextLine());
-				
+
 				System.out.println("\nInforme o nome do time visitante: ");
 				timeVisitante.setNome(scan.nextLine());
 				validarNomeDosTimes(timeLocal, timeVisitante);
 				System.out.println("\nPreparando jogo número " + numeroPartidaAtual);
 				timeLocal.listar();
-				
+
 				System.out.println();
 				timeVisitante.listar();
-				
+
 				Partida partida = new Partida(timeLocal, timeVisitante);
 				Date dataAtual = new Date();
-				
+
 				partida.setDataPartida(dataAtual);
 				partida.iniciarPartida();
 				partida.mostrarResultado();
 				partida.finalizarPartida(numeroPartidaAtual, qtdPartidasInformada);
+
 				++numeroPartidaAtual;
 			} while (qtdPartidasInformada >= numeroPartidaAtual);
 			listarFinalizacaoTrabalho();
@@ -62,7 +68,7 @@ public class ArquivoMain {
 		System.out.println("*************************");
 	}
 
-	private static boolean isNullOrWhiteSpace(final String texto) {
+	private static boolean isNullOrWhiteSpace(String texto) {
 		if (texto == null) {
 			return true;
 		}
@@ -77,14 +83,14 @@ public class ArquivoMain {
 		return true;
 	}
 
-	private static void validarNomeDosTimes(final Time timeLocal, final Time timeVisitante) {
+	private static void validarNomeDosTimes(Time timeLocal, Time timeVisitante) {
 		if (isNullOrWhiteSpace(timeLocal.getNome()) || isNullOrWhiteSpace(timeVisitante.getNome())) {
 			System.out.println("Pelo menos um dos nomes dos times está inválido, por favor reinsira o nome do time");
 			reinsirerNomeDosTimes(timeLocal, timeVisitante);
 		}
 	}
 
-	private static void reinsirerNomeDosTimes(final Time timeLocal, final Time timeVisitante) {
+	private static void reinsirerNomeDosTimes(Time timeLocal, Time timeVisitante) {
 		Scanner scan = new Scanner(System.in);
 		if (isNullOrWhiteSpace(timeLocal.getNome()) && isNullOrWhiteSpace(timeVisitante.getNome())) {
 			System.out.println("Informe o nome do time local corretamente: ");
@@ -101,7 +107,7 @@ public class ArquivoMain {
 		validarNomeDosTimes(timeLocal, timeVisitante);
 	}
 
-	private static boolean isInteger(final String strNum) {
+	private static boolean isInteger(String strNum) {
 		if (strNum == null) {
 			return false;
 		}
@@ -114,13 +120,13 @@ public class ArquivoMain {
 	}
 
 	private static int obterQtdPartidasInformada(int valor) {
-		final Scanner scan = new Scanner(System.in);
+		Scanner scan = new Scanner(System.in);
 		boolean valido;
 		do {
-			final String valorAuxiliar = scan.nextLine();
+			String valorAuxiliar = scan.nextLine();
 			valido = isInteger(valorAuxiliar);
 			if (!valido) {
-				System.out.println("Informe o n\u00famero de partidas corretamente: ");
+				System.out.println("Informe o número de partidas corretamente: ");
 			} else {
 				valor = Integer.parseInt(valorAuxiliar);
 			}
