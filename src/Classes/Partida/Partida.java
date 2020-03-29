@@ -58,19 +58,19 @@ public class Partida {
 	}
 
 	public void iniciarPartida() {
-		System.out.println("*** Pronto para iniciar partida? <Pressiona a tecla enter>");
-		lerTeclaEnter();
-		System.out.println("Inicio de Jogo. Partida Iniciada !!");
-	}
-
-	public void mostrarResultado() {
 		Random random = new Random();
 		this.scoreLocal = random.nextInt(11);
 		this.scoreVisitante = random.nextInt(11);
+	}
+
+	public void mostrarResultado() {
 		System.out.println("\n");
 		System.out.println(String.valueOf(this.timeLocal.getNome()) + " " + this.scoreLocal + " X "
 				+ this.scoreVisitante + " " + this.timeVisitante.getNome());
 		System.out.println("\n");
+	}
+
+	public void finalizarPartida() {
 		if (this.scoreLocal == this.scoreVisitante) {
 			this.timeLocal.setPontos(1);
 			this.timeVisitante.setPontos(1);
@@ -84,27 +84,6 @@ public class Partida {
 			this.timeVisitante.setPontos(3);
 			this.timeLocal.setQtdDerrotas(1);
 			this.timeVisitante.setQtdVitorias(1);
-		}
-		this.timeLocal.listar();
-		System.out.println("\n");
-		this.timeVisitante.listar();
-	}
-
-	public void finalizarPartida(int numeroPartidaAtual, int qtdPartidasTotais) {
-		int qtdPartidasRestante = qtdPartidasTotais - numeroPartidaAtual;
-		System.out.println("********************************************************************");
-		System.out.println(
-				(qtdPartidasRestante == 0) ? "Todas as partidas já foram realizadas.\nTecle Enter para continuar"
-						: ("Tecle Enter para iniciar a próxima partida ( " + numeroPartidaAtual + " de "
-								+ qtdPartidasTotais + " restante )."));
-		lerTeclaEnter();
-	}
-
-	private static void lerTeclaEnter() {
-		try {
-			System.in.read(new byte[2]);
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 	}
 }

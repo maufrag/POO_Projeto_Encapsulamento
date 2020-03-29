@@ -39,11 +39,20 @@ public class ArquivoMain {
 				Partida partida = new Partida(timeLocal, timeVisitante);
 				Date dataAtual = new Date();
 
+				System.out.println("*** Pronto para iniciar partida? <Pressiona a tecla enter>");
+				lerTeclaEnter();
+				System.out.println("Inicio de Jogo. Partida Iniciada !!");
 				partida.setDataPartida(dataAtual);
 				partida.iniciarPartida();
 				partida.mostrarResultado();
-				partida.finalizarPartida(numeroPartidaAtual, qtdPartidasInformada);
+				partida.finalizarPartida();
+				
+				timeLocal.listar();
+				System.out.println("\n");
+				timeVisitante.listar();
 
+				exibirMensagemFinalDaPartida(qtdPartidasInformada, numeroPartidaAtual);
+				lerTeclaEnter();
 				++numeroPartidaAtual;
 			} while (qtdPartidasInformada >= numeroPartidaAtual);
 			listarFinalizacaoTrabalho();
@@ -132,5 +141,22 @@ public class ArquivoMain {
 			}
 		} while (!valido);
 		return valor;
+	}
+
+	private static void lerTeclaEnter() {
+		try {
+			System.in.read(new byte[2]);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	private static void exibirMensagemFinalDaPartida(int qtdPartidasTotais, int numeroPartidaAtual) {
+		int qtdPartidasRestante = qtdPartidasTotais - numeroPartidaAtual;
+		System.out.println("********************************************************************");
+		System.out.println(
+				(qtdPartidasRestante == 0) ? "Todas as partidas já foram realizadas.\nTecle Enter para continuar"
+						: ("Tecle Enter para iniciar a próxima partida ( " + qtdPartidasRestante + " de "
+								+ qtdPartidasTotais + " restante )."));
 	}
 }
